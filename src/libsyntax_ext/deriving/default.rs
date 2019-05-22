@@ -6,7 +6,7 @@ use syntax::ast::{Expr, MetaItem};
 use syntax::ext::base::{Annotatable, DummyResult, ExtCtxt};
 use syntax::ext::build::AstBuilder;
 use syntax::ptr::P;
-use syntax::symbol::sym;
+use syntax::symbol::{keywords, sym};
 use syntax::span_err;
 use syntax_pos::Span;
 
@@ -47,7 +47,8 @@ fn default_substructure(cx: &mut ExtCtxt<'_>,
                         trait_span: Span,
                         substr: &Substructure<'_>)
                         -> P<Expr> {
-    let default_ident = cx.std_path(&["default", "Default", "default"]);
+    let default_ident = cx.std_path(&[keywords::Default.name(), sym::Default,
+                                      keywords::Default.name()]);
     let default_call = |span| cx.expr_call_global(span, default_ident.clone(), Vec::new());
 
     return match *substr.fields {
