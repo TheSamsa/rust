@@ -16,7 +16,7 @@ use syntax::ext::base::{self, *};
 use syntax::feature_gate;
 use syntax::parse::token;
 use syntax::ptr::P;
-use syntax::symbol::{Symbol, sym};
+use syntax::symbol::{keywords, Symbol, sym};
 use syntax_pos::Span;
 use syntax::tokenstream;
 use smallvec::smallvec;
@@ -37,7 +37,7 @@ pub fn expand_global_asm<'cx>(cx: &'cx mut ExtCtxt<'_>,
     match parse_global_asm(cx, sp, tts) {
         Ok(Some(global_asm)) => {
             MacEager::items(smallvec![P(ast::Item {
-                ident: ast::Ident::with_empty_ctxt(Symbol::intern("")),
+                ident: ast::Ident::with_empty_ctxt(keywords::Invalid.name()),
                 attrs: Vec::new(),
                 id: ast::DUMMY_NODE_ID,
                 node: ast::ItemKind::GlobalAsm(P(global_asm)),
