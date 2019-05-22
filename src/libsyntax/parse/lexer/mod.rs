@@ -1,6 +1,6 @@
 use crate::ast::{self, Ident};
 use crate::parse::{token, ParseSess};
-use crate::symbol::Symbol;
+use crate::symbol::{Symbol, sym};
 use crate::parse::unescape;
 use crate::parse::unescape_error_reporting::{emit_unescape_error, push_escaped_char};
 
@@ -753,7 +753,7 @@ impl<'a> StringReader<'a> {
                 }
                 _ => {
                     // just a 0
-                    return token::Integer(self.name_from(start_bpos));
+                    return token::Integer(sym::n0);
                 }
             }
         } else if c.is_digit(10) {

@@ -372,6 +372,7 @@ symbols! {
         more_struct_aliases,
         movbe_target_feature,
         must_use,
+        n0: "0",
         naked,
         naked_functions,
         name,
